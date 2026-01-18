@@ -1,0 +1,210 @@
+2025-12-27 21:39:50,448 p=124826 u=root n=ansible | [WARNING]: provided hosts list is empty, only localhost is available. Note that
+the implicit localhost does not match 'all'
+
+2025-12-27 21:39:50,528 p=124826 u=root n=ansible | [WARNING]: Could not match supplied host pattern, ignoring: linux_servers
+
+2025-12-27 21:39:50,528 p=124826 u=root n=ansible | playbook: playbooks/security/rotate-root-password.yml
+2025-12-27 21:58:52,081 p=131770 u=root n=ansible | ERROR! the playbook: bootstrap.yml could not be found
+2025-12-27 22:02:08,668 p=132928 u=root n=ansible | [WARNING]:  * Failed to parse /srv/ansible-automation/hosts/prod/inventory with yaml plugin: Invalid data from file, expected dictionary and got:  172.17.0.103
+
+2025-12-27 22:02:08,668 p=132928 u=root n=ansible | [WARNING]:  * Failed to parse /srv/ansible-automation/hosts/prod/inventory with ini plugin: Invalid host pattern 'all:' supplied, ending in ':' is not allowed, this character is
+reserved to provide a port.
+
+2025-12-27 22:02:08,668 p=132928 u=root n=ansible | [WARNING]: Unable to parse /srv/ansible-automation/hosts/prod/inventory as an inventory source
+
+2025-12-27 22:02:08,668 p=132928 u=root n=ansible | [WARNING]: No inventory was parsed, only implicit localhost is available
+
+2025-12-27 22:02:08,671 p=132928 u=root n=ansible | [WARNING]: provided hosts list is empty, only localhost is available. Note that the implicit localhost does not match 'all'
+
+2025-12-27 22:02:27,401 p=132928 u=root n=ansible |  [ERROR]: User interrupted execution
+
+2025-12-27 22:02:57,797 p=133207 u=root n=ansible | PLAY [Bootstrap new server - create admin user and set up SSH key] ***************************************************************************************************************
+2025-12-27 22:02:57,813 p=133207 u=root n=ansible | TASK [Ensure python is installed (some minimal images don't have it)] ************************************************************************************************************
+2025-12-27 22:02:57,813 p=133207 u=root n=ansible | Saturday 27 December 2025  22:02:57 +0300 (0:00:03.675)       0:00:03.675 ***** 
+2025-12-27 22:02:57,813 p=133207 u=root n=ansible | Saturday 27 December 2025  22:02:57 +0300 (0:00:03.674)       0:00:03.674 ***** 
+2025-12-27 22:02:57,854 p=133207 u=root n=ansible | fatal: [mskd-mail-01.phs31.local:172.17.0.103 mskd-media-01:172.17.0.102]: UNREACHABLE! => {
+    "changed": false,
+    "msg": "Failed to connect to the host via ssh: hostname contains invalid characters",
+    "unreachable": true
+}
+2025-12-27 22:02:57,855 p=133207 u=root n=ansible | PLAY RECAP ***********************************************************************************************************************************************************************
+2025-12-27 22:02:57,855 p=133207 u=root n=ansible | mskd-mail-01.phs31.local:172.17.0.103 mskd-media-01:172.17.0.102 : ok=0    changed=0    unreachable=1    failed=0    skipped=0    rescued=0    ignored=0   
+2025-12-27 22:02:57,855 p=133207 u=root n=ansible | Saturday 27 December 2025  22:02:57 +0300 (0:00:00.042)       0:00:03.718 ***** 
+2025-12-27 22:02:57,855 p=133207 u=root n=ansible | =============================================================================== 
+2025-12-27 22:02:57,856 p=133207 u=root n=ansible | Ensure python is installed (some minimal images don't have it) ------------------------------------------------------------------------------------------------------------ 0.04s
+2025-12-27 22:02:57,856 p=133207 u=root n=ansible | Playbook run took 0 days, 0 hours, 0 minutes, 3 seconds
+2025-12-27 22:02:57,856 p=133207 u=root n=ansible | Saturday 27 December 2025  22:02:57 +0300 (0:00:00.042)       0:00:03.717 ***** 
+2025-12-27 22:02:57,856 p=133207 u=root n=ansible | =============================================================================== 
+2025-12-27 22:02:57,856 p=133207 u=root n=ansible | raw --------------------------------------------------------------------- 0.04s
+2025-12-27 22:02:57,856 p=133207 u=root n=ansible | ~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~ 
+2025-12-27 22:02:57,856 p=133207 u=root n=ansible | total ------------------------------------------------------------------- 0.04s
+2025-12-27 22:03:44,178 p=133499 u=root n=ansible | PLAY [Bootstrap new server - create admin user and set up SSH key] ***************************************************************************************************************
+2025-12-27 22:03:44,195 p=133499 u=root n=ansible | TASK [Ensure python is installed (some minimal images don't have it)] ************************************************************************************************************
+2025-12-27 22:03:44,195 p=133499 u=root n=ansible | Saturday 27 December 2025  22:03:44 +0300 (0:00:03.609)       0:00:03.609 ***** 
+2025-12-27 22:03:44,195 p=133499 u=root n=ansible | Saturday 27 December 2025  22:03:44 +0300 (0:00:03.607)       0:00:03.607 ***** 
+2025-12-27 22:03:44,236 p=133499 u=root n=ansible | fatal: [mskd-mail-01.phs31.local:172.17.0.103 mskd-media-01.phs31.local:172.17.0.102]: UNREACHABLE! => {
+    "changed": false,
+    "msg": "Failed to connect to the host via ssh: hostname contains invalid characters",
+    "unreachable": true
+}
+2025-12-27 22:03:44,238 p=133499 u=root n=ansible | PLAY RECAP ***********************************************************************************************************************************************************************
+2025-12-27 22:03:44,238 p=133499 u=root n=ansible | mskd-mail-01.phs31.local:172.17.0.103 mskd-media-01.phs31.local:172.17.0.102 : ok=0    changed=0    unreachable=1    failed=0    skipped=0    rescued=0    ignored=0   
+2025-12-27 22:03:44,238 p=133499 u=root n=ansible | Saturday 27 December 2025  22:03:44 +0300 (0:00:00.043)       0:00:03.652 ***** 
+2025-12-27 22:03:44,238 p=133499 u=root n=ansible | =============================================================================== 
+2025-12-27 22:03:44,239 p=133499 u=root n=ansible | Ensure python is installed (some minimal images don't have it) ------------------------------------------------------------------------------------------------------------ 0.04s
+2025-12-27 22:03:44,239 p=133499 u=root n=ansible | Playbook run took 0 days, 0 hours, 0 minutes, 3 seconds
+2025-12-27 22:03:44,239 p=133499 u=root n=ansible | Saturday 27 December 2025  22:03:44 +0300 (0:00:00.043)       0:00:03.651 ***** 
+2025-12-27 22:03:44,239 p=133499 u=root n=ansible | =============================================================================== 
+2025-12-27 22:03:44,239 p=133499 u=root n=ansible | raw --------------------------------------------------------------------- 0.04s
+2025-12-27 22:03:44,239 p=133499 u=root n=ansible | ~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~ 
+2025-12-27 22:03:44,239 p=133499 u=root n=ansible | total ------------------------------------------------------------------- 0.04s
+2025-12-27 22:04:31,616 p=133791 u=root n=ansible | PLAY [Bootstrap new server - create admin user and set up SSH key] ***************************************************************************************************************
+2025-12-27 22:04:31,629 p=133791 u=root n=ansible | TASK [Ensure python is installed (some minimal images don't have it)] ************************************************************************************************************
+2025-12-27 22:04:31,629 p=133791 u=root n=ansible | Saturday 27 December 2025  22:04:31 +0300 (0:00:03.144)       0:00:03.144 ***** 
+2025-12-27 22:04:31,629 p=133791 u=root n=ansible | Saturday 27 December 2025  22:04:31 +0300 (0:00:03.143)       0:00:03.143 ***** 
+2025-12-27 22:04:31,663 p=133791 u=root n=ansible | fatal: [mskd-mail-01:172.17.0.103 mskd-media-01:172.17.0.102]: UNREACHABLE! => {
+    "changed": false,
+    "msg": "Failed to connect to the host via ssh: hostname contains invalid characters",
+    "unreachable": true
+}
+2025-12-27 22:04:31,664 p=133791 u=root n=ansible | PLAY RECAP ***********************************************************************************************************************************************************************
+2025-12-27 22:04:31,664 p=133791 u=root n=ansible | mskd-mail-01:172.17.0.103 mskd-media-01:172.17.0.102 : ok=0    changed=0    unreachable=1    failed=0    skipped=0    rescued=0    ignored=0   
+2025-12-27 22:04:31,665 p=133791 u=root n=ansible | Saturday 27 December 2025  22:04:31 +0300 (0:00:00.035)       0:00:03.180 ***** 
+2025-12-27 22:04:31,665 p=133791 u=root n=ansible | =============================================================================== 
+2025-12-27 22:04:31,665 p=133791 u=root n=ansible | Ensure python is installed (some minimal images don't have it) ------------------------------------------------------------------------------------------------------------ 0.04s
+2025-12-27 22:04:31,665 p=133791 u=root n=ansible | Playbook run took 0 days, 0 hours, 0 minutes, 3 seconds
+2025-12-27 22:04:31,665 p=133791 u=root n=ansible | Saturday 27 December 2025  22:04:31 +0300 (0:00:00.035)       0:00:03.179 ***** 
+2025-12-27 22:04:31,665 p=133791 u=root n=ansible | =============================================================================== 
+2025-12-27 22:04:31,665 p=133791 u=root n=ansible | raw --------------------------------------------------------------------- 0.04s
+2025-12-27 22:04:31,665 p=133791 u=root n=ansible | ~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~ 
+2025-12-27 22:04:31,665 p=133791 u=root n=ansible | total ------------------------------------------------------------------- 0.04s
+2025-12-27 22:06:44,553 p=134599 u=root n=ansible | PLAY [Bootstrap new server - create admin user and set up SSH key] ***************************************************************************************************************
+2025-12-27 22:06:44,563 p=134599 u=root n=ansible | TASK [Ensure python is installed (some minimal images don't have it)] ************************************************************************************************************
+2025-12-27 22:06:44,564 p=134599 u=root n=ansible | Saturday 27 December 2025  22:06:44 +0300 (0:00:03.016)       0:00:03.016 ***** 
+2025-12-27 22:06:44,564 p=134599 u=root n=ansible | Saturday 27 December 2025  22:06:44 +0300 (0:00:03.015)       0:00:03.015 ***** 
+2025-12-27 22:06:44,696 p=134599 u=root n=ansible | fatal: [mskd-mail-01]: UNREACHABLE! => {
+    "changed": false,
+    "msg": "Failed to connect to the host via ssh: Warning: Permanently added '172.17.0.103' (ED25519) to the list of known hosts.\r\nroot@172.17.0.103: Permission denied (publickey,gssapi-keyex,gssapi-with-mic,password).",
+    "unreachable": true
+}
+2025-12-27 22:06:44,724 p=134599 u=root n=ansible | fatal: [mskd-media-01]: UNREACHABLE! => {
+    "changed": false,
+    "msg": "Failed to connect to the host via ssh: Warning: Permanently added '172.17.0.102' (ED25519) to the list of known hosts.\r\nroot@172.17.0.102: Permission denied (publickey,gssapi-keyex,gssapi-with-mic,password).",
+    "unreachable": true
+}
+2025-12-27 22:06:44,726 p=134599 u=root n=ansible | PLAY RECAP ***********************************************************************************************************************************************************************
+2025-12-27 22:06:44,726 p=134599 u=root n=ansible | mskd-mail-01               : ok=0    changed=0    unreachable=1    failed=0    skipped=0    rescued=0    ignored=0   
+2025-12-27 22:06:44,727 p=134599 u=root n=ansible | mskd-media-01              : ok=0    changed=0    unreachable=1    failed=0    skipped=0    rescued=0    ignored=0   
+2025-12-27 22:06:44,727 p=134599 u=root n=ansible | Saturday 27 December 2025  22:06:44 +0300 (0:00:00.163)       0:00:03.179 ***** 
+2025-12-27 22:06:44,727 p=134599 u=root n=ansible | =============================================================================== 
+2025-12-27 22:06:44,727 p=134599 u=root n=ansible | Ensure python is installed (some minimal images don't have it) ------------------------------------------------------------------------------------------------------------ 0.16s
+2025-12-27 22:06:44,727 p=134599 u=root n=ansible | Playbook run took 0 days, 0 hours, 0 minutes, 3 seconds
+2025-12-27 22:06:44,727 p=134599 u=root n=ansible | Saturday 27 December 2025  22:06:44 +0300 (0:00:00.163)       0:00:03.179 ***** 
+2025-12-27 22:06:44,727 p=134599 u=root n=ansible | =============================================================================== 
+2025-12-27 22:06:44,727 p=134599 u=root n=ansible | raw --------------------------------------------------------------------- 0.16s
+2025-12-27 22:06:44,727 p=134599 u=root n=ansible | ~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~ 
+2025-12-27 22:06:44,728 p=134599 u=root n=ansible | total ------------------------------------------------------------------- 0.16s
+2025-12-27 22:22:52,676 p=140622 u=root n=ansible | PLAY [Bootstrap new server - create admin user and set up SSH key] ***************************************************************************************************************
+2025-12-27 22:22:52,693 p=140622 u=root n=ansible | TASK [Ensure python is installed (some minimal images don't have it)] ************************************************************************************************************
+2025-12-27 22:22:52,693 p=140622 u=root n=ansible | Saturday 27 December 2025  22:22:52 +0300 (0:00:05.160)       0:00:05.160 ***** 
+2025-12-27 22:22:52,693 p=140622 u=root n=ansible | Saturday 27 December 2025  22:22:52 +0300 (0:00:05.159)       0:00:05.159 ***** 
+2025-12-27 22:22:52,856 p=140622 u=root n=ansible | fatal: [mskd-mail-01]: UNREACHABLE! => {
+    "changed": false,
+    "msg": "Failed to connect to the host via ssh: rootexit@172.17.0.103: Permission denied (publickey,gssapi-keyex,gssapi-with-mic,password).",
+    "unreachable": true
+}
+2025-12-27 22:22:52,857 p=140622 u=root n=ansible | fatal: [mskd-media-01]: UNREACHABLE! => {
+    "changed": false,
+    "msg": "Failed to connect to the host via ssh: rootexit@172.17.0.102: Permission denied (publickey,gssapi-keyex,gssapi-with-mic,password).",
+    "unreachable": true
+}
+2025-12-27 22:22:52,858 p=140622 u=root n=ansible | PLAY RECAP ***********************************************************************************************************************************************************************
+2025-12-27 22:22:52,858 p=140622 u=root n=ansible | mskd-mail-01               : ok=0    changed=0    unreachable=1    failed=0    skipped=0    rescued=0    ignored=0   
+2025-12-27 22:22:52,858 p=140622 u=root n=ansible | mskd-media-01              : ok=0    changed=0    unreachable=1    failed=0    skipped=0    rescued=0    ignored=0   
+2025-12-27 22:22:52,858 p=140622 u=root n=ansible | Saturday 27 December 2025  22:22:52 +0300 (0:00:00.165)       0:00:05.326 ***** 
+2025-12-27 22:22:52,858 p=140622 u=root n=ansible | =============================================================================== 
+2025-12-27 22:22:52,859 p=140622 u=root n=ansible | Ensure python is installed (some minimal images don't have it) ------------------------------------------------------------------------------------------------------------ 0.17s
+2025-12-27 22:22:52,859 p=140622 u=root n=ansible | Playbook run took 0 days, 0 hours, 0 minutes, 5 seconds
+2025-12-27 22:22:52,859 p=140622 u=root n=ansible | Saturday 27 December 2025  22:22:52 +0300 (0:00:00.165)       0:00:05.325 ***** 
+2025-12-27 22:22:52,859 p=140622 u=root n=ansible | =============================================================================== 
+2025-12-27 22:22:52,859 p=140622 u=root n=ansible | raw --------------------------------------------------------------------- 0.17s
+2025-12-27 22:22:52,859 p=140622 u=root n=ansible | ~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~ 
+2025-12-27 22:22:52,859 p=140622 u=root n=ansible | total ------------------------------------------------------------------- 0.17s
+2025-12-27 22:23:20,080 p=140806 u=root n=ansible | PLAY [Bootstrap new server - create admin user and set up SSH key] ***************************************************************************************************************
+2025-12-27 22:23:20,091 p=140806 u=root n=ansible | TASK [Ensure python is installed (some minimal images don't have it)] ************************************************************************************************************
+2025-12-27 22:23:20,091 p=140806 u=root n=ansible | Saturday 27 December 2025  22:23:20 +0300 (0:00:05.341)       0:00:05.341 ***** 
+2025-12-27 22:23:20,092 p=140806 u=root n=ansible | Saturday 27 December 2025  22:23:20 +0300 (0:00:05.340)       0:00:05.340 ***** 
+2025-12-27 22:23:20,228 p=140806 u=root n=ansible | fatal: [mskd-mail-01]: UNREACHABLE! => {
+    "changed": false,
+    "msg": "Failed to connect to the host via ssh: root@172.17.0.103: Permission denied (publickey,gssapi-keyex,gssapi-with-mic,password).",
+    "unreachable": true
+}
+2025-12-27 22:23:20,228 p=140806 u=root n=ansible | fatal: [mskd-media-01]: UNREACHABLE! => {
+    "changed": false,
+    "msg": "Failed to connect to the host via ssh: root@172.17.0.102: Permission denied (publickey,gssapi-keyex,gssapi-with-mic,password).",
+    "unreachable": true
+}
+2025-12-27 22:23:20,229 p=140806 u=root n=ansible | PLAY RECAP ***********************************************************************************************************************************************************************
+2025-12-27 22:23:20,230 p=140806 u=root n=ansible | mskd-mail-01               : ok=0    changed=0    unreachable=1    failed=0    skipped=0    rescued=0    ignored=0   
+2025-12-27 22:23:20,230 p=140806 u=root n=ansible | mskd-media-01              : ok=0    changed=0    unreachable=1    failed=0    skipped=0    rescued=0    ignored=0   
+2025-12-27 22:23:20,230 p=140806 u=root n=ansible | Saturday 27 December 2025  22:23:20 +0300 (0:00:00.138)       0:00:05.479 ***** 
+2025-12-27 22:23:20,230 p=140806 u=root n=ansible | =============================================================================== 
+2025-12-27 22:23:20,230 p=140806 u=root n=ansible | Ensure python is installed (some minimal images don't have it) ------------------------------------------------------------------------------------------------------------ 0.14s
+2025-12-27 22:23:20,230 p=140806 u=root n=ansible | Playbook run took 0 days, 0 hours, 0 minutes, 5 seconds
+2025-12-27 22:23:20,230 p=140806 u=root n=ansible | Saturday 27 December 2025  22:23:20 +0300 (0:00:00.138)       0:00:05.478 ***** 
+2025-12-27 22:23:20,230 p=140806 u=root n=ansible | =============================================================================== 
+2025-12-27 22:23:20,230 p=140806 u=root n=ansible | raw --------------------------------------------------------------------- 0.14s
+2025-12-27 22:23:20,230 p=140806 u=root n=ansible | ~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~ 
+2025-12-27 22:23:20,230 p=140806 u=root n=ansible | total ------------------------------------------------------------------- 0.14s
+2025-12-27 22:40:19,325 p=146717 u=root n=ansible | PLAY [Rotate root passwords on Linux servers and store in HashiCorp Vault] *******************************************************************************************************
+2025-12-27 22:40:19,336 p=146717 u=root n=ansible | TASK [Gathering Facts] ***********************************************************************************************************************************************************
+2025-12-27 22:40:19,336 p=146717 u=root n=ansible | Saturday 27 December 2025  22:40:19 +0300 (0:00:00.015)       0:00:00.015 ***** 
+2025-12-27 22:40:19,336 p=146717 u=root n=ansible | Saturday 27 December 2025  22:40:19 +0300 (0:00:00.014)       0:00:00.014 ***** 
+2025-12-27 22:40:19,837 p=146717 u=root n=ansible | fatal: [mskd-mail-01]: UNREACHABLE! => {
+    "changed": false,
+    "msg": "Data could not be sent to remote host \"172.17.0.103\". Make sure this host can be reached over ssh: root@172.17.0.103: Permission denied (publickey,gssapi-keyex,gssapi-with-mic,password).\r\n",
+    "unreachable": true
+}
+2025-12-27 22:40:19,844 p=146717 u=root n=ansible | fatal: [mskd-media-01]: UNREACHABLE! => {
+    "changed": false,
+    "msg": "Data could not be sent to remote host \"172.17.0.102\". Make sure this host can be reached over ssh: root@172.17.0.102: Permission denied (publickey,gssapi-keyex,gssapi-with-mic,password).\r\n",
+    "unreachable": true
+}
+2025-12-27 22:40:19,845 p=146717 u=root n=ansible | PLAY RECAP ***********************************************************************************************************************************************************************
+2025-12-27 22:40:19,845 p=146717 u=root n=ansible | mskd-mail-01               : ok=0    changed=0    unreachable=1    failed=0    skipped=0    rescued=0    ignored=0   
+2025-12-27 22:40:19,845 p=146717 u=root n=ansible | mskd-media-01              : ok=0    changed=0    unreachable=1    failed=0    skipped=0    rescued=0    ignored=0   
+2025-12-27 22:40:19,845 p=146717 u=root n=ansible | Saturday 27 December 2025  22:40:19 +0300 (0:00:00.508)       0:00:00.524 ***** 
+2025-12-27 22:40:19,846 p=146717 u=root n=ansible | =============================================================================== 
+2025-12-27 22:40:19,846 p=146717 u=root n=ansible | Gathering Facts ----------------------------------------------------------------------------------------------------------------------------------------------------------- 0.51s
+2025-12-27 22:40:19,846 p=146717 u=root n=ansible | Playbook run took 0 days, 0 hours, 0 minutes, 0 seconds
+2025-12-27 22:40:19,846 p=146717 u=root n=ansible | Saturday 27 December 2025  22:40:19 +0300 (0:00:00.509)       0:00:00.524 ***** 
+2025-12-27 22:40:19,846 p=146717 u=root n=ansible | =============================================================================== 
+2025-12-27 22:40:19,846 p=146717 u=root n=ansible | gather_facts ------------------------------------------------------------ 0.51s
+2025-12-27 22:40:19,846 p=146717 u=root n=ansible | ~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~ 
+2025-12-27 22:40:19,846 p=146717 u=root n=ansible | total ------------------------------------------------------------------- 0.51s
+2026-01-18 15:02:36,863 p=896873 u=root n=ansible | PLAY [Bootstrap new server - create admin user and set up SSH key] ***************************************************************************************************************
+2026-01-18 15:02:36,879 p=896873 u=root n=ansible | TASK [Ensure python is installed (some minimal images don't have it)] ************************************************************************************************************
+2026-01-18 15:02:36,879 p=896873 u=root n=ansible | Sunday 18 January 2026  15:02:36 +0300 (0:00:01.067)       0:00:01.067 ******** 
+2026-01-18 15:02:36,879 p=896873 u=root n=ansible | Sunday 18 January 2026  15:02:36 +0300 (0:00:01.065)       0:00:01.065 ******** 
+2026-01-18 15:02:37,045 p=896873 u=root n=ansible | fatal: [mskd-media-01]: UNREACHABLE! => {
+    "changed": false,
+    "msg": "Failed to connect to the host via ssh: root@172.17.0.102: Permission denied (publickey,gssapi-keyex,gssapi-with-mic,password).",
+    "unreachable": true
+}
+2026-01-18 15:02:37,067 p=896873 u=root n=ansible | fatal: [mskd-mail-01]: UNREACHABLE! => {
+    "changed": false,
+    "msg": "Failed to connect to the host via ssh: root@172.17.0.103: Permission denied (publickey,gssapi-keyex,gssapi-with-mic,password).",
+    "unreachable": true
+}
+2026-01-18 15:02:37,068 p=896873 u=root n=ansible | PLAY RECAP ***********************************************************************************************************************************************************************
+2026-01-18 15:02:37,068 p=896873 u=root n=ansible | mskd-mail-01               : ok=0    changed=0    unreachable=1    failed=0    skipped=0    rescued=0    ignored=0   
+2026-01-18 15:02:37,068 p=896873 u=root n=ansible | mskd-media-01              : ok=0    changed=0    unreachable=1    failed=0    skipped=0    rescued=0    ignored=0   
+2026-01-18 15:02:37,068 p=896873 u=root n=ansible | Sunday 18 January 2026  15:02:37 +0300 (0:00:00.189)       0:00:01.256 ******** 
+2026-01-18 15:02:37,068 p=896873 u=root n=ansible | =============================================================================== 
+2026-01-18 15:02:37,069 p=896873 u=root n=ansible | Ensure python is installed (some minimal images don't have it) ------------------------------------------------------------------------------------------------------------ 0.19s
+2026-01-18 15:02:37,069 p=896873 u=root n=ansible | Playbook run took 0 days, 0 hours, 0 minutes, 1 seconds
+2026-01-18 15:02:37,069 p=896873 u=root n=ansible | Sunday 18 January 2026  15:02:37 +0300 (0:00:00.189)       0:00:01.255 ******** 
+2026-01-18 15:02:37,069 p=896873 u=root n=ansible | =============================================================================== 
+2026-01-18 15:02:37,069 p=896873 u=root n=ansible | raw --------------------------------------------------------------------- 0.19s
+2026-01-18 15:02:37,069 p=896873 u=root n=ansible | ~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~ 
+2026-01-18 15:02:37,069 p=896873 u=root n=ansible | total ------------------------------------------------------------------- 0.19s

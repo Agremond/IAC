@@ -1,0 +1,26 @@
+---
+# NAME: Ansible Navigator Settings
+#   https://ansible.readthedocs.io/projects/navigator/settings/
+# SOURCE: Source of truth on this configuration is located here:
+#   https://github.com/ansiblejunky/ansible-project-template/blob/master/ansible-navigator.yml
+
+ansible-navigator:
+  logging:
+    level: critical # debug, info, warning, error, critical
+    file: ./ansible-navigator.log
+  playbook-artifact:
+    enable: false
+  execution-environment:
+    enabled: true
+    # image: quay.io/ansible/ansible-runner:latest
+    image: ghcr.io/ansible/community-ansible-dev-tools:latest
+    container-engine: auto
+    # container-options:
+    #   - "--user=root"
+    #   - "--workdir=/runner/project"
+    environment-variables:
+      pass: # Pass existing environment variables to the container
+        - EXAMPLE
+      set: # Set environment variables in the container
+        VAR1: value1
+  mode: stdout # stdout, interactive, silent

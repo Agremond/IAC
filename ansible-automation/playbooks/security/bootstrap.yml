@@ -1,0 +1,60 @@
+---
+- name: Bootstrap new server - create admin user and set up SSH key
+  hosts: all
+  become: true
+  gather_facts: false
+
+  vars_prompt:
+    - name: ansible_ssh_pass
+      prompt: "Enter SSH password for current user"
+      private: yes
+
+  pre_tasks:
+    # Если сервер совсем свежий и у root нет ключа — можно использовать --ask-pass
+    - name: Ensure python is installed (some minimal images don't have it)
+      raw: test -e /usr/bin/python3 || (dnf install -y python3)
+      changed_when: false
+
+  tasks:
+    - name: Create new admin user
+      user:
+        name: "{{ bootstrap_user | default('ansible-admin') }}"
+        shell: /bin/bash
+        create_home: true
+        groups: wheel
+        append: true
+        state: present
+
+    - name: Allow passwordless sudo for this user
+      copy:
+        content: "{{ bootstrap_user | default('ansible-admin') }} ALL=(ALL) NOPASSWD:ALL"
+        dest: "/etc/sudoers.d/{{ bootstrap_user | default('ansible-admin') }}"
+        mode: '0440'
+        validate: 'visudo -cf %s'
+
+    - name: Add authorized SSH key for the new user
+      authorized_key:
+        user: "{{ bootstrap_user | default('ansible-admin') }}"
+        state: present
+        key: "{{ lookup('file', 'id_ed25519.pub') }}"   # или путь к вашему публичному ключу
+        # или просто укажите содержимое ключа:
+        # key: "ssh-ed25519 AAAAC3NzaC1lZDI1NTE5AAAAI... your-comment"
+
+#    - name: Disable password authentication for root (optional, but recommended)
+#      lineinfile:
+#        path: /etc/ssh/sshd_config
+#        regexp: '^#?PermitRootLogin'
+#        line: 'PermitRootLogin prohibit-password'
+#        validate: 'sshd -t -f %s'
+
+#    - name: Disable password authentication completely (optional)
+#      lineinfile:
+#        path: /etc/ssh/sshd_config
+#        regexp: '^#?PasswordAuthentication'
+#        line: 'PasswordAuthentication no'
+#        validate: 'sshd -t -f %s'
+
+    - name: Restart sshd
+      service:
+        name: sshd
+        state: restarted
