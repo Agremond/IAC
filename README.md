@@ -1,1 +1,91 @@
 IAC Project
+# IAC — Infrastructure as Code
+
+Проект автоматизации инфраструктуры и настройки безопасности серверов с использованием **Ansible**.
+
+Основной фокус — безопасная начальная настройка серверов, ротация паролей root, интеграция с HashiCorp Vault для хранения секретов.
+
+## Основные возможности
+
+- Начальная настройка («бутстрап») новых серверов  
+  - Создание административного пользователя  
+  - Настройка sudo без пароля  
+  - Добавление SSH-ключа и отключение root-доступа по паролю  
+- Ротация пароля root (две реализации)  
+  - v1 — генерация пароля на контроллере + запись в Vault  
+  - v2 — генерация пароля **внутри Vault** по заданной политике (рекомендуемый способ)  
+- Хранение секретов в **HashiCorp Vault** (KV v2 + AppRole аутентификация)  
+- Разделение окружений: dev / test / prod  
+- Кастомные фильтры и оптимизированная конфигурация Ansible
+
+## Структура проекта
+.
+├── README.md
+├── ansible.cfg
+├── ansible-navigator.yml
+├── ansible-write.hcl
+├── requirements.txt
+├── galaxy.sh
+│
+├── ansible-automation/
+│   ├── collections/                # установленные коллекции
+│   ├── hosts/
+│   │   ├── dev/                   # инвентари и group_vars для dev
+│   │   ├── test/
+│   │   └── prod/
+│   ├── plugins/
+│   │   └── filter/
+│   │       └── example_filters.py # кастомные jinja2-фильтры
+│   ├── playbooks/
+│   │   └── security/
+│   │       ├── bootstrap.yml
+│   │       ├── rotate-root-password.yml          # v1
+│   │       └── rotate-root-password-v2.yml       # v2 — рекомендуемая
+│   └── roles/                     # пока пусто, планируется расширение
+└── .ansible-lint.yml
+## Требования
+
+- Ansible ≥ 2.14 (рекомендуется последняя стабильная версия)
+- Python 3.9+
+- Доступ к HashiCorp Vault (KV v2 + включённые password-политики для v2)
+- Установленные коллекции (см. ниже)
+
+### Установка зависимостей
+
+```bash
+# Установка коллекций
+./galaxy.sh
+# или вручную:
+ansible-galaxy collection install -r ansible-automation/collections/requirements.yml
+
+# (опционально) установка python-зависимостей, если используете кастомные плагины
+pip install -r requirements.txt
+Настройка
+
+Настройте подключение к VaultВ переменных окружения (или в group_vars / ansible-vault):Bashexport VAULT_ADDR="https://vault.example.com"
+export VAULT_ROLE_ID="your-approle-role-id"
+export VAULT_SECRET_ID="your-approle-secret-id"Рекомендуется использовать HTTPS в продакшене!
+Настройте инвентариВ папках hosts/dev, hosts/test, hosts/prod находятся файлы инвентари и group_vars/all.yml.
+Укажите свои хосты и нужные переменные.
+Проверьте ansible.cfgКонфигурация уже оптимизирована для скорости и удобства отладки.
+
+### Использование
+
+1. Начальная настройка сервера (bootstrap)
+
+Bashansible-playbook \
+  -i hosts/dev/inventory \
+  playbooks/security/bootstrap.yml \
+  --ask-pass
+После выполнения рекомендуется отключить парольный доступ по SSH.
+2. Ротация пароля root (рекомендуемый вариант — v2)
+Bashansible-playbook \
+  -i hosts/prod/inventory \
+  playbooks/security/rotate-root-password-v2.yml
+Пароль будет сгенерирован внутри Vault по политике strong-root и записан в KV-путь:
+textsecret/data/servers/root-passwords/{{ inventory_hostname }}
+3. Ротация пароля root (вариант v1 — устаревший)
+Bashansible-playbook \
+  -i hosts/test/inventory \
+  playbooks/security/rotate-root-password.yml
+
