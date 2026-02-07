@@ -43,13 +43,13 @@ pip install -r requirements.txt
 [root@mskd-vault ~]# vault read auth/approle/role/ansible-role/role-id
 Key        Value
 ---        -----
-role_id    9317ceb2-9257-890b-d1da-5979c092b88b
+role_id    your-approle-role-id
 
 [root@mskd-vault ~]# vault write -f auth/approle/role/ansible-role/secret-id
 Key                   Value
 ---                   -----
-secret_id             ac04f6a6-5a70-3b68-82aa-ff330e423664
-secret_id_accessor    bba77148-6cf1-e46e-077d-5cae9996d8e8
+secret_id             your-approle-secret-id
+secret_id_accessor    XXXXXXXX-XXXX-XXXX-XXXX-XXXXXXXXXXXX
 secret_id_num_uses    0
 secret_id_ttl         720h
 ```
