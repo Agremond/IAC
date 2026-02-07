@@ -35,35 +35,47 @@ ansible-galaxy collection install -r ansible-automation/collections/requirements
 
 # (опционально) установка python-зависимостей, если используете кастомные плагины
 pip install -r requirements.txt
-Настройка
+```
+### Настройка
 
-Настройте подключение к VaultВ переменных окружения (или в group_vars / ansible-vault):Bashexport VAULT_ADDR="https://vault.example.com"
+Настройте подключение к Vault в переменных окружения (или в group_vars / ansible-vault):
+```bash
+export VAULT_ADDR="https://vault.example.com"
 export VAULT_ROLE_ID="your-approle-role-id"
-export VAULT_SECRET_ID="your-approle-secret-id"Рекомендуется использовать HTTPS в продакшене!
-Настройте инвентариВ папках hosts/dev, hosts/test, hosts/prod находятся файлы инвентари и group_vars/all.yml.
+export VAULT_SECRET_ID="your-approle-secret-id"
+```
+Настройте инвентари в папках hosts/dev, hosts/test, hosts/prod находятся файлы инвентари и group_vars/all.yml.
 Укажите свои хосты и нужные переменные.
-Проверьте ansible.cfgКонфигурация уже оптимизирована для скорости и удобства отладки.
+Проверьте ansible.cfg
+Конфигурация уже оптимизирована для скорости и удобства отладки.
 
 ### Использование
 
 1. Начальная настройка сервера (bootstrap)
 
-Bash
+```Bash
 ansible-playbook \
   -i hosts/dev/inventory \
   playbooks/security/bootstrap.yml \
   --ask-pass
   
- ansible-playbook -i hosts/prod/inventory playbooks/security/rotate-root-password.yml -e "ansible_ssh_extra_args='-o PubkeyAuthentication=no -o PreferredAuthentications=password'" --ask-pass --ask-become-pass
-  
+ ansible-playbook \
+ -i hosts/prod/inventory \
+ playbooks/security/rotate-root-password.yml \
+ -e "ansible_ssh_extra_args='-o PubkeyAuthentication=no -o PreferredAuthentications=password'" \
+ --ask-pass --ask-become-pass
+```  
+
 После выполнения рекомендуется отключить парольный доступ по SSH.
 
 2. Далее нужно получить ID и токен для доступа к хранилищу паролей
+```bash
 
 [root@mskd-vault ~]# vault read auth/approle/role/ansible-role/role-id
 Key        Value
 ---        -----
 role_id    9317ceb2-9257-890b-d1da-5979c092b88b
+
 [root@mskd-vault ~]# vault write -f auth/approle/role/ansible-role/secret-id
 Key                   Value
 ---                   -----
@@ -71,17 +83,22 @@ secret_id             ac04f6a6-5a70-3b68-82aa-ff330e423664
 secret_id_accessor    bba77148-6cf1-e46e-077d-5cae9996d8e8
 secret_id_num_uses    0
 secret_id_ttl         720h
-
+```
 
 3. Ротация пароля root
-Bash
+```Bash
 ansible-playbook \
   -i hosts/prod/inventory \
   playbooks/security/rotate-root-password-v2.yml  --ask-become-pass
+```  
 Пароль будет сгенерирован внутри Vault по политике strong-root и записан в KV-путь:
-textsecret/data/servers/root-passwords/{{ inventory_hostname }}
-3. Ротация пароля root (вариант v1 — устаревший)
-Bashansible-playbook \
+```text
+secret/data/servers/root-passwords/{{ inventory_hostname }}
+```
+3. Ротация пароля root
+```Bash
+ansible-playbook \
   -i hosts/test/inventory \
-  playbooks/security/rotate-root-password.yml
+  playbooks/security/rotate-root-password-v2.yml --ask-become-pass
 
+```
