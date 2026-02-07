@@ -74,13 +74,7 @@ ansible-playbook \
   -i hosts/dev/inventory \
   playbooks/security/bootstrap.yml \
   --ask-pass
-  
- ansible-playbook \
- -i hosts/prod/inventory \
- playbooks/security/rotate-root-password.yml \
- -e "ansible_ssh_extra_args='-o PubkeyAuthentication=no -o PreferredAuthentications=password'" \
- --ask-pass --ask-become-pass
-```  
+```
 
 После выполнения рекомендуется отключить парольный доступ по SSH.
 
