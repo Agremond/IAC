@@ -3,11 +3,14 @@
   hosts: all
   become: true
   gather_facts: false
-
-  vars_prompt:
-    - name: ansible_ssh_pass
-      prompt: "Enter SSH password for current user"
-      private: yes
+  vars:
+    ansible_ssh_extra_args: '-o PubkeyAuthentication=no -o PreferredAuthentications=password'
+    ansible_become: true
+    ansible_become_method: sudo
+#  vars_prompt:
+#    - name: ansible_ssh_pass
+#      prompt: "Enter SSH password for current user"
+#      private: yes
 
   pre_tasks:
     # Если сервер совсем свежий и у root нет ключа — можно использовать --ask-pass

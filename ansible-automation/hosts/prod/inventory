@@ -1,14 +1,6 @@
-all:
-  children:
-    linux_servers:
-      hosts:
-        mskd-mail-01:
-          ansible_host: 172.17.0.103
-        mskd-media-01:
-          ansible_host: 172.17.0.102
-        mskd-pmg-01:
-          ansible_host: 172.17.0.109
-        mskd-zabbix:
-          ansible_host: 172.17.0.81
-        mskd-vault:
-          ansible_host: 172.17.0.83
+[linux_servers]
+mskd-zabbix     ansible_host=172.17.0.81
+mskd-mail-01    ansible_host=172.17.0.103
+mskd-vault      ansible_host=172.17.0.83
+mskd-media-01   ansible_host=172.17.0.102
+mskd-pmg-01     ansible_host=172.17.0.109

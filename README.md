@@ -18,31 +18,6 @@ IAC Project
 - Разделение окружений: dev / test / prod  
 - Кастомные фильтры и оптимизированная конфигурация Ansible
 
-## Структура проекта
-.
-├── README.md
-├── ansible.cfg
-├── ansible-navigator.yml
-├── ansible-write.hcl
-├── requirements.txt
-├── galaxy.sh
-│
-├── ansible-automation/
-│   ├── collections/                # установленные коллекции
-│   ├── hosts/
-│   │   ├── dev/                   # инвентари и group_vars для dev
-│   │   ├── test/
-│   │   └── prod/
-│   ├── plugins/
-│   │   └── filter/
-│   │       └── example_filters.py # кастомные jinja2-фильтры
-│   ├── playbooks/
-│   │   └── security/
-│   │       ├── bootstrap.yml
-│   │       ├── rotate-root-password.yml          # v1
-│   │       └── rotate-root-password-v2.yml       # v2 — рекомендуемая
-│   └── roles/                     # пока пусто, планируется расширение
-└── .ansible-lint.yml
 ## Требования
 
 - Ansible ≥ 2.14 (рекомендуется последняя стабильная версия)
@@ -73,15 +48,36 @@ export VAULT_SECRET_ID="your-approle-secret-id"Рекомендуется исп
 
 1. Начальная настройка сервера (bootstrap)
 
-Bashansible-playbook \
+Bash
+ansible-playbook \
   -i hosts/dev/inventory \
   playbooks/security/bootstrap.yml \
   --ask-pass
+  
+ ansible-playbook -i hosts/prod/inventory playbooks/security/rotate-root-password.yml -e "ansible_ssh_extra_args='-o PubkeyAuthentication=no -o PreferredAuthentications=password'" --ask-pass --ask-become-pass
+  
 После выполнения рекомендуется отключить парольный доступ по SSH.
-2. Ротация пароля root (рекомендуемый вариант — v2)
-Bashansible-playbook \
+
+2. Далее нужно получить ID и токен для доступа к хранилищу паролей
+
+[root@mskd-vault ~]# vault read auth/approle/role/ansible-role/role-id
+Key        Value
+---        -----
+role_id    9317ceb2-9257-890b-d1da-5979c092b88b
+[root@mskd-vault ~]# vault write -f auth/approle/role/ansible-role/secret-id
+Key                   Value
+---                   -----
+secret_id             ac04f6a6-5a70-3b68-82aa-ff330e423664
+secret_id_accessor    bba77148-6cf1-e46e-077d-5cae9996d8e8
+secret_id_num_uses    0
+secret_id_ttl         720h
+
+
+3. Ротация пароля root
+Bash
+ansible-playbook \
   -i hosts/prod/inventory \
-  playbooks/security/rotate-root-password-v2.yml
+  playbooks/security/rotate-root-password-v2.yml  --ask-become-pass
 Пароль будет сгенерирован внутри Vault по политике strong-root и записан в KV-путь:
 textsecret/data/servers/root-passwords/{{ inventory_hostname }}
 3. Ротация пароля root (вариант v1 — устаревший)
